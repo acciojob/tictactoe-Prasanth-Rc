@@ -6,8 +6,8 @@ let board = ["", "", "", "", "", "", "", "", ""];
 let gameActive = true;
 
 function startGame() {
-    player1 = document.getElementById("player-1").value.trim();
-    player2 = document.getElementById("player-2").value.trim();
+    player1 = document.getElementById("player1").value.trim();
+    player2 = document.getElementById("player2").value.trim();
 
     if (player1 === "" || player2 === "") {
         alert("Please enter both player names!");
@@ -17,7 +17,7 @@ function startGame() {
     currentPlayer = player1;
     document.getElementById("player-input").classList.add("hidden");
     document.getElementById("game").classList.remove("hidden");
-    document.getElementById("message").innerText = `${currentPlayer}, you're up!`;
+    document.getElementById("message").innerText = `${currentPlayer}, you're up`;
 
     createBoard();
 }
@@ -40,7 +40,7 @@ function createBoard() {
 function handleCellClick(index) {
     if (board[index] !== "" || !gameActive) return;
 
-    board[index] = currentPlayer === player1 ? "X" : "O";
+    board[index] = currentPlayer === player1 ? "x" : "o";
     createBoard();
 
     if (checkWin()) {
@@ -56,7 +56,7 @@ function handleCellClick(index) {
     }
 
     currentPlayer = currentPlayer === player1 ? player2 : player1;
-    document.getElementById("message").innerText = `${currentPlayer}, you're up!`;
+    document.getElementById("message").innerText = `${currentPlayer}, you're up`;
 }
 
 
@@ -82,6 +82,6 @@ function resetGame() {
     board = ["", "", "", "", "", "", "", "", ""];
     gameActive = true;
     currentPlayer = player1;
-    document.getElementById("message").innerText = `${currentPlayer}, you're up!`;
+    document.getElementById("message").innerText = `${currentPlayer}, you're up`;
     createBoard();
 }
