@@ -23,7 +23,7 @@ function startGame() {
 }
 
 function createBoard() {
-    const boardContainer = document.getElementById("board");
+    const boardContainer = document.getElementsByClassName("board");
     boardContainer.innerHTML = "";
 
     board.forEach((cell, index) => {
