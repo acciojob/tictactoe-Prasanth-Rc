@@ -17,13 +17,13 @@ function startGame() {
     currentPlayer = player1;
     document.getElementById("player-input").classList.add("hidden");
     document.getElementById("game").classList.remove("hidden");
-    document.getElementClassName("message").innerText = `${currentPlayer}, you're up`;
+    document.getElementById("message").innerText = `${currentPlayer}, you're up`;
 
     createBoard();
 }
 
 function createBoard() {
-    const boardContainer = document.getElementsByClassName("board");
+    const boardContainer = document.getElementById("board");
     boardContainer.innerHTML = "";
 
     board.forEach((cell, index) => {
@@ -36,40 +36,33 @@ function createBoard() {
     });
 }
 
-
 function handleCellClick(index) {
     if (board[index] !== "" || !gameActive) return;
 
-    board[index] = currentPlayer === player1 ? "x" : "o";
+    board[index] = currentPlayer === player1 ? "X" : "O";
     createBoard();
 
     if (checkWin()) {
-        document.getElementByClassName("message").innerText = `${currentPlayer} congratulations you won!`;
+        document.getElementById("message").innerText = `${currentPlayer} congratulations you won!`;
         gameActive = false;
         return;
     }
 
     if (board.every(cell => cell !== "")) {
-        document.getElementByClassName("message").innerText = "It's a draw!";
+        document.getElementById("message").innerText = "It's a draw!";
         gameActive = false;
         return;
     }
 
     currentPlayer = currentPlayer === player1 ? player2 : player1;
-    document.getElementByClassName("message").innerText = `${currentPlayer}, you're up`;
+    document.getElementById("message").innerText = `${currentPlayer}, you're up`;
 }
-
 
 function checkWin() {
     const winPatterns = [
-        [0, 1, 2], 
-        [3, 4, 5],
-        [6, 7, 8],
-        [0, 3, 6],
-        [1, 4, 7],
-        [2, 5, 8],
-        [0, 4, 8],
-        [2, 4, 6]
+        [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
+        [0, 3, 6], [1, 4, 7], [2, 5, 8], // Columns
+        [0, 4, 8], [2, 4, 6]             // Diagonals
     ];
 
     return winPatterns.some(pattern => {
@@ -82,6 +75,6 @@ function resetGame() {
     board = ["", "", "", "", "", "", "", "", ""];
     gameActive = true;
     currentPlayer = player1;
-    document.getElementByClassName("message").innerText = `${currentPlayer}, you're up`;
+    document.getElementById("message").innerText = `${currentPlayer}, you're up`;
     createBoard();
 }
