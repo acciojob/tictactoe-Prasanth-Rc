@@ -7,6 +7,21 @@
 </head>
 
 <body>
+	<div id="player-input">
+        <h2>Enter Player Names</h2>
+        <input type="text" id="player-1" placeholder="Player 1 Name" required />
+        <input type="text" id="player-2" placeholder="Player 2 Name" required />
+        <button id="submit" onclick="startGame()">Submit</button>
+    </div>
+
+    <div id="game" class="hidden">
+        <h1>Tic Tac Toe</h1>
+        <div class="message" id="message"></div>
+        <div class="board" id="board">
+
+        </div>
+        <button id="reset" onclick="resetGame()">Restart Game</button>
+    </div>
 	<!-- the entire body must be written by student -->
     <script type="text/javascript" src="./script.js">
 </script>
