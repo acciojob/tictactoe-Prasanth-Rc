@@ -17,7 +17,7 @@ function startGame() {
     currentPlayer = player1;
     document.getElementById("player-input").classList.add("hidden");
     document.getElementById("game").classList.remove("hidden");
-    document.getElementById("message").innerText = `${currentPlayer}, you're up`;
+    document.getElementClassName("message").innerText = `${currentPlayer}, you're up`;
 
     createBoard();
 }
@@ -44,19 +44,19 @@ function handleCellClick(index) {
     createBoard();
 
     if (checkWin()) {
-        document.getElementById("message").innerText = `${currentPlayer} congratulations you won!`;
+        document.getElementByClassName("message").innerText = `${currentPlayer} congratulations you won!`;
         gameActive = false;
         return;
     }
 
     if (board.every(cell => cell !== "")) {
-        document.getElementById("message").innerText = "It's a draw!";
+        document.getElementByClassName("message").innerText = "It's a draw!";
         gameActive = false;
         return;
     }
 
     currentPlayer = currentPlayer === player1 ? player2 : player1;
-    document.getElementById("message").innerText = `${currentPlayer}, you're up`;
+    document.getElementByClassName("message").innerText = `${currentPlayer}, you're up`;
 }
 
 
@@ -82,6 +82,6 @@ function resetGame() {
     board = ["", "", "", "", "", "", "", "", ""];
     gameActive = true;
     currentPlayer = player1;
-    document.getElementById("message").innerText = `${currentPlayer}, you're up`;
+    document.getElementByClassName("message").innerText = `${currentPlayer}, you're up`;
     createBoard();
 }
