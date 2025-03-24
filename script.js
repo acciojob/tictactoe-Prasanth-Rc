@@ -29,7 +29,7 @@ function createBoard() {
     board.forEach((cell, index) => {
         const cellElement = document.createElement("div");
         cellElement.classList.add("cell");
-        cellElement.setAttribute("id", index + 1); // Fix for Cypress
+        cellElement.setAttribute("id", index + 1);
         cellElement.addEventListener("click", () => handleCellClick(index));
         cellElement.innerText = cell;
         boardContainer.appendChild(cellElement);
@@ -39,11 +39,11 @@ function createBoard() {
 function handleCellClick(index) {
     if (board[index] !== "" || !gameActive) return;
 
-    board[index] = currentPlayer === player1 ? "X" : "O"; // Ensure "X" and "O" match Cypress test expectations
+    board[index] = currentPlayer === player1 ? "X" : "O"; 
     createBoard();
 
     if (checkWin()) {
-        setTimeout(() => { // Small delay to allow UI update
+        setTimeout(() => { 
             document.getElementById("message").innerText = `${currentPlayer} congratulations you won!`;
         }, 100);
         gameActive = false;
@@ -64,9 +64,9 @@ function handleCellClick(index) {
 
 function checkWin() {
     const winPatterns = [
-        [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
-        [0, 3, 6], [1, 4, 7], [2, 5, 8], // Columns
-        [0, 4, 8], [2, 4, 6]             // Diagonals
+        [0, 1, 2], [3, 4, 5], [6, 7, 8], 
+        [0, 3, 6], [1, 4, 7], [2, 5, 8],
+        [0, 4, 8], [2, 4, 6]   
     ];
 
     return winPatterns.some(pattern => {
