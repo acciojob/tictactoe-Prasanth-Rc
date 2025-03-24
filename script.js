@@ -29,7 +29,7 @@ function createBoard() {
     board.forEach((cell, index) => {
         const cellElement = document.createElement("div");
         cellElement.classList.add("cell");
-        cellElement.setAttribute("id", index + 1);
+        cellElement.setAttribute("id", (index + 1).toString());
         cellElement.addEventListener("click", () => handleCellClick(index));
         cellElement.innerText = cell;
         boardContainer.appendChild(cellElement);
@@ -39,11 +39,11 @@ function createBoard() {
 function handleCellClick(index) {
     if (board[index] !== "" || !gameActive) return;
 
-    board[index] = currentPlayer === player1 ? "X" : "O"; 
-    createBoard();
+    board[index] = currentPlayer === player1 ? "X" : "O";
+    setTimeout(createBoard, 50); 
 
     if (checkWin()) {
-        setTimeout(() => { 
+        setTimeout(() => {
             document.getElementById("message").innerText = `${currentPlayer} congratulations you won!`;
         }, 100);
         gameActive = false;
@@ -59,7 +59,9 @@ function handleCellClick(index) {
     }
 
     currentPlayer = currentPlayer === player1 ? player2 : player1;
-    document.getElementById("message").innerText = `${currentPlayer}, you're up`;
+    setTimeout(() => {
+        document.getElementById("message").innerText = `${currentPlayer}, you're up`;
+    }, 100);
 }
 
 function checkWin() {
