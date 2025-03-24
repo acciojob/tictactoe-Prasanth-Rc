@@ -29,7 +29,7 @@ function createBoard() {
     board.forEach((cell, index) => {
         const cellElement = document.createElement("div");
         cellElement.classList.add("cell");
-        cellElement.setAttribute("id", index);
+        cellElement.setAttribute("id", index + 1); // Fix for Cypress
         cellElement.addEventListener("click", () => handleCellClick(index));
         cellElement.innerText = cell;
         boardContainer.appendChild(cellElement);
@@ -39,17 +39,21 @@ function createBoard() {
 function handleCellClick(index) {
     if (board[index] !== "" || !gameActive) return;
 
-    board[index] = currentPlayer === player1 ? "X" : "O";
+    board[index] = currentPlayer === player1 ? "X" : "O"; // Ensure "X" and "O" match Cypress test expectations
     createBoard();
 
     if (checkWin()) {
-        document.getElementById("message").innerText = `${currentPlayer} congratulations you won!`;
+        setTimeout(() => { // Small delay to allow UI update
+            document.getElementById("message").innerText = `${currentPlayer} congratulations you won!`;
+        }, 100);
         gameActive = false;
         return;
     }
 
     if (board.every(cell => cell !== "")) {
-        document.getElementById("message").innerText = "It's a draw!";
+        setTimeout(() => {
+            document.getElementById("message").innerText = "It's a draw!";
+        }, 100);
         gameActive = false;
         return;
     }
